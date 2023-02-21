@@ -9,11 +9,8 @@ Cтрока короче 20 символов
 имяФункции('проверяемая строка', 10); // false
 */
 
-let phrase = "";
-let length = 0;
-
-let phraseLength = function (phrase, length) {
-  if (phrase.length == length) {
+const phraseLength = function (phrase, length) {
+  if (phrase.length === length) {
     return true;
   } else if (phrase.length < length) {
     return true;
@@ -22,14 +19,18 @@ let phraseLength = function (phrase, length) {
   }
 };
 
-console.log("Функция для проверки длины строки");
-console.log("Cтрока qwertyuiopasdfghjk короче 20 символов?");
-console.log(phraseLength("qwertyuiopasdfghjk", 20));
-console.log("Cтрока qwertyuiopasdfghjk ровно 18 символов?");
-console.log(phraseLength("qwertyuiopasdfghjk", 18));
-console.log("Cтрока qwertyuiopasdfghjk короче 10 символов?");
-console.log(phraseLength("qwertyuiopasdfghjk", 10));
-console.log("");
+phraseLength('qwertyuiopasdfghjk', 20);
+phraseLength('qwertyuiopasdfghjk', 18);
+phraseLength('qwertyuiopasdfghjk', 10);
+
+//console.log('Функция для проверки длины строки');
+//console.log('Cтрока qwertyuiopasdfghjk короче 20 символов?');
+//console.log(phraseLength('qwertyuiopasdfghjk', 20));
+//console.log('Cтрока qwertyuiopasdfghjk ровно 18 символов?');
+//console.log(phraseLength('qwertyuiopasdfghjk', 18));
+//console.log('Cтрока qwertyuiopasdfghjk короче 10 символов?');
+//console.log(phraseLength('qwertyuiopasdfghjk', 10));
+//console.log('');
 
 // Функция для проверки, является ли строка палиндромом
 /*
@@ -41,29 +42,34 @@ console.log("");
 имяФункции('Лёша на полке клопа нашёл '); // true
 */
 
-let reverseString = function (string) {
+const reverseString = function (string) {
   string = string.replace(/\s/g, '');
   let newString = '';
   for (let i = string.length - 1; i >= 0; i--) {
     newString += string[i];
   }
-  if (string.toLowerCase() == newString.toLowerCase()) {
+  if (string.toLowerCase() === newString.toLowerCase()) {
     return true;
   } else {
     return false;
   }
-}
+};
 
-console.log("Функция для проверки, является ли строка палиндромом");
-console.log("Cтрока", "'топот'", "является палиндромом?");
-console.log(reverseString("топот"));
-console.log("Cтрока", "'ДовОд'", "является палиндромом?");
-console.log(reverseString("ДовОд"));
-console.log("Cтрока", "'Кекс'", "является палиндромом?");
-console.log(reverseString("Кекс"));
-console.log("Cтрока", "'Лёша на полке клопа нашёл '" ,"является палиндромом?");
-console.log(reverseString('Лёша на полке клопа нашёл '));
-console.log("");
+reverseString('топот');
+reverseString('ДовОд');
+reverseString('Кекс');
+reverseString('Лёша на полке клопа нашёл ');
+
+//console.log('Функция для проверки, является ли строка палиндромом');
+//console.log('Cтрока', 'топот', 'является полиндромом?');
+//console.log(reverseString('топот'));
+//console.log('Cтрока', 'ДовОд', 'является палиндромом?');
+//console.log(reverseString('ДовОд'));
+//console.log('Cтрока', 'Кекс', 'является палиндромом?');
+//console.log(reverseString('Кекс'));
+//console.log('Cтрока', 'Лёша на полке клопа нашёл ', 'является палиндромом?');
+//console.log(reverseString('Лёша на полке клопа нашёл '));
+//console.log('');
 
 // Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа.
 // Если в строке нет ни одной цифры, функция должна вернуть NaN:
@@ -80,30 +86,39 @@ console.log("");
 имяФункции(1.5);  // 15
 */
 
-function retractNumber(string) {
-  string = string.toString()
-  let number = string.replace(/[^0-9]/g, "");
+const retractNumber = function (string) {
+  string = string.toString();
+  const number = string.replace(/[^0-9]/g, '');
   return parseInt(number, 10);
-}
+};
 
-console.log("Функция извлечения цифры из строки");
-console.log("Строка: 2023 год");
-console.log(retractNumber("2023 год"));
-console.log("Строка: ECMAScript 2022");
-console.log(retractNumber("ECMAScript 2022"));
-console.log("Строка: 1 кефир, 0.5 батона");
-console.log(retractNumber("1 кефир, 0.5 батона"));
-console.log("Строка: агент 007");
-console.log(retractNumber("агент 007"));
-console.log("Строка: а я томат");
-console.log(retractNumber("а я томат"));
-console.log("Число: 2023");
-console.log(retractNumber(2023));
-console.log("Число: -1");
-console.log(retractNumber(-1));
-console.log("Число: 1.5");
-console.log(retractNumber(1.5));
-console.log("");
+retractNumber('2023 год');
+retractNumber('ECMAScript 2022');
+retractNumber('1 кефир, 0.5 батона');
+retractNumber('агент 007');
+retractNumber('а я томат');
+retractNumber(2023);
+retractNumber(-1);
+retractNumber(1.5);
+
+//console.log('Функция извлечения цифры из строки');
+//console.log('Строка: 2023 год');
+//console.log(retractNumber('2023 год'));
+//console.log('Строка: ECMAScript 2022');
+//console.log(retractNumber('ECMAScript 2022'));
+//console.log('Строка: 1 кефир, 0.5 батона');
+//console.log(retractNumber('1 кефир, 0.5 батона'));
+//console.log('Строка: агент 007');
+//console.log(retractNumber('агент 007'));
+//console.log('Строка: а я томат');
+//console.log(retractNumber('а я томат'));
+//console.log('Число: 2023');
+//console.log(retractNumber(2023));
+//console.log('Число: -1');
+//console.log(retractNumber(-1));
+//console.log('Число: 1.5');
+//console.log(retractNumber(1.5));
+//console.log('');
 
 // Функция, которая принимает три параметра: исходную строку, минимальную длину и строку с добавочными символами — и возвращает исходную строку,
 // дополненную указанными символами до заданной длины. Символы добавляются в начало строки.
@@ -117,18 +132,15 @@ console.log("");
 Усложненное задание не использовать при этом функцию padStart()
 */
 
-let initString = "";
-let stringLength = 0;
-let stringAddition = "";
-let finalString = "";
-let preString = "";
+let finalString = '';
+let preString = '';
 
-let stringAdd = function (finalString, stringAddition) {
-  preString = stringAddition + finalString;
+const stringAdd = function (string, stringAddition) {
+  preString = stringAddition + string;
   return preString;
 };
 
-let stringConstructor = function (initString, stringLength, stringAddition) {
+const stringConstructor = function (initString, stringLength, stringAddition) {
   finalString = initString;
   if (initString.length >= stringLength) {
     return finalString;
@@ -151,12 +163,17 @@ let stringConstructor = function (initString, stringLength, stringAddition) {
   }
 };
 
-console.log("Функция дополнения строки");
-console.log("Вводим", "1", 4, "0");
-console.log(stringConstructor("1", 4, "0"));
-console.log("Вводим", "q", 4, "werty");
-console.log(stringConstructor("q", 4, "werty"));
-console.log("Вводим", "q", 4, "we");
-console.log(stringConstructor("q", 4, "we"));
-console.log("Вводим", "qwerty", 4, "0");
-console.log(stringConstructor("qwerty", 4, "0"));
+stringConstructor('1', 4, '0');
+stringConstructor('q', 4, 'werty');
+stringConstructor('q', 4, 'we');
+stringConstructor('qwerty', 4, '0');
+
+//console.log('Функция дополнения строки');
+//console.log('Вводим', '1', 4, '0');
+//console.log(stringConstructor('1', 4, '0'));
+//console.log('Вводим', 'q', 4, 'werty');
+//console.log(stringConstructor('q', 4, 'werty'));
+//console.log('Вводим', 'q', 4, 'we');
+//console.log(stringConstructor('q', 4, 'we'));
+//console.log('Вводим', 'qwerty', 4, '0');
+//console.log(stringConstructor('qwerty', 4, '0'));
