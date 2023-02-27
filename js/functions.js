@@ -25,7 +25,7 @@ phraseLength('qwertyuiopasdfghjk', 10);
 
 //console.log('Функция для проверки длины строки');
 //console.log('Cтрока qwertyuiopasdfghjk короче 20 символов?');
-console.log(phraseLength('qwertyuiopasdfghjk', 20));
+//console.log(phraseLength('qwertyuiopasdfghjk', 20));
 //console.log('Cтрока qwertyuiopasdfghjk ровно 18 символов?');
 //console.log(phraseLength('qwertyuiopasdfghjk', 18));
 //console.log('Cтрока qwertyuiopasdfghjk короче 10 символов?');

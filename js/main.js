@@ -77,6 +77,7 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
+
 const createPost = () => {
   const randomIdIndex = getRandomInteger(0, personId.length - 1);
   const randomAvatarIndex = getRandomInteger(0, avatar.length - 1);
@@ -97,5 +98,6 @@ const createPost = () => {
 };
 
 //console.log(
-//createPost()
+createPost();
 //);
+
