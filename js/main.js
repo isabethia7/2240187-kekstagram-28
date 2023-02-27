@@ -96,6 +96,6 @@ const createPost = () => {
   };
 };
 
-console.log(
-  createPost()
-);
+//console.log(
+//createPost()
+//);
