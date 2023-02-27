@@ -87,8 +87,8 @@ const createPost = () => {
   const randomNameIndex = getRandomInteger(0, profile.length - 1);
   return {
     id: personId[randomIdIndex],
-    avatar: 'img/' + [randomAvatarIndex] + '-avatar.svg',
-    urlAdress: 'photos/' + [randomUrlIndex] + '.jpg',
+    avatar:`img/ ${randomAvatarIndex} -avatar.svg`,
+    urlAdress:`photos/ ${randomUrlIndex}.jpg`,
     description: description[randomDescriptionIndex],
     likes: likes[randomLikesIndex],
     comment: comments[randomCommentIndex],
