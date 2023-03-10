@@ -72,7 +72,7 @@ const profile = [
 ];
 
 
-const createPost = () => {
+const createPostDescription = () => {
   const randomIdIndex = getRandomInteger(0, personId.length - 1);
   const randomAvatarIndex = getRandomInteger(0, avatar.length - 1);
   const randomUrlIndex = getRandomInteger(0, urlAdress.length - 1);
@@ -91,4 +91,4 @@ const createPost = () => {
   };
 };
 
-export {createPost};
+export {createPostDescription};

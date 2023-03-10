@@ -1,8 +1,9 @@
 import './util.js';
 import './data.js';
-import {createPost} from './data.js';
+import './createMiniatures.js';
+import {createPostDescription} from './data.js';
+import { createElement } from './createMiniatures.js';
 
-//console.log(
-createPost();
-//);
+const FinalPost = createPostDescription();
+createElement(FinalPost);
 
