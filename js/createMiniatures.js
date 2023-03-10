@@ -1,15 +1,16 @@
 
-const userDialog = document.querySelector('.big-picture');
-userDialog.classList.remove('hidden');
+//const userDialog = document.querySelector('.big-picture');
+//userDialog.classList.remove('hidden');
 
 
-const pictureContainer = userDialog.querySelector('.picture');
-const pictureElement = pictureContainer.querySelector('#picture');
+const pictureContainer = document.querySelector('.pictures');
+//pictureContainer.classList.remove('visually-hidden');
+const pictureElement = document.querySelector('#picture').contant.querySelector('.picture');
 
 
-const similarPhotoPosts = pictureElement.createDocumentFragment();
+const similarPhotoPosts = document.createDocumentFragment();
 
-export function createElement(randomPostData){
+export function createElement(randomPostData) {
   randomPostData.forEach((item) => {
     const postElement = pictureElement.cloneNode(true);
     postElement.querySelector('.picture__img').src = item.url;
@@ -17,6 +18,6 @@ export function createElement(randomPostData){
     postElement.querySelector('.picture__likes').textContent = item.likes;
     similarPhotoPosts.appendChild(postElement);
   });
+  pictureContainer.append(similarPhotoPosts);
 }
-pictureContainer.append(similarPhotoPosts);
 
