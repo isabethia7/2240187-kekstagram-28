@@ -1,5 +1,6 @@
 
 import { getRandomInteger } from './util.js';
+//import { isEscapeKey, isEnterKey } from './util.js';
 
 const descriptionsCount = 25;
 
@@ -92,5 +93,6 @@ const createPostDescription = () => {
     ProfileName: profile[randomNameIndex],
   };
 };
+
 
 export const photoDescriptionArray = () => Array.from({ length: descriptionsCount }, createPostDescription);
