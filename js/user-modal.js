@@ -1,9 +1,12 @@
-import {isEscapeKey, isEnterKey} from './util.js';
-import {renderSimilarList, clearSimilarList} from './createMiniatures';
-import './user-form.js';
+import { isEscapeKey, isEnterKey } from './util.js';
+import { createElement, clearElement } from './createMiniatures.js';
+//import './user-form.js';
+
 
 const userModalElement = document.querySelector('.big-picture');
-const userModalOpenElement = document.querySelector('.big-picture__open');
+const userModalTitle = document.querySelector('.big-picture__title');
+
+const userModalOpenElement = document.querySelector('.pictures');
 const userModalCloseElement = userModalElement.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
@@ -13,16 +16,25 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-export function openUserModal() {
+const userModalOpen = () => {
   userModalElement.classList.remove('hidden');
-  renderSimilarList();
+  userModalTitle.classList.remove('visually-hidden');
 
   document.addEventListener('keydown', onDocumentKeydown);
+};
+
+userModalOpenElement.addEventListener('click', () => {
+  userModalOpen();
+});
+
+function openUserModal() {
+  userModalElement.classList.remove('hidden');
+  //createElement();
 }
 
 function closeUserModal() {
   userModalElement.classList.add('hidden');
-  clearSimilarList();
+  clearElement();
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
