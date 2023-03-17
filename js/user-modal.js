@@ -6,7 +6,7 @@ import { createElement } from './createMiniatures.js';
 const userModalElement = document.querySelector('.big-picture');
 const userModalTitle = document.querySelector('.big-picture__title');
 
-const userModalOpenElement = document.querySelector('.pictures');
+const userModalOpenElement = document.querySelector('.pictures').querySelector('.picture');
 const userModalCloseElement = userModalElement.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
@@ -16,35 +16,27 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-const userModalOpen = () => {
+function userModalOpen() {
   userModalElement.classList.remove('hidden');
   userModalTitle.classList.remove('visually-hidden');
 
   document.addEventListener('keydown', onDocumentKeydown);
-};
-
-userModalOpenElement.addEventListener('click', () => {
-  userModalOpen();
-});
-
-function openUserModal() {
-  userModalElement.classList.remove('hidden');
-  //createElement();
 }
 
 function closeUserModal() {
   userModalElement.classList.add('hidden');
+  userModalTitle.classList.add('visually-hidden');
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
 userModalOpenElement.addEventListener('click', () => {
-  openUserModal();
+  userModalOpen();
 });
 
 userModalOpenElement.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
-    openUserModal();
+    userModalOpen();
   }
 });
 
