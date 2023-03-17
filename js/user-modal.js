@@ -1,5 +1,5 @@
 import { isEscapeKey, isEnterKey } from './util.js';
-import { createElement, clearElement } from './createMiniatures.js';
+import { createElement } from './createMiniatures.js';
 //import './user-form.js';
 
 
@@ -34,7 +34,6 @@ function openUserModal() {
 
 function closeUserModal() {
   userModalElement.classList.add('hidden');
-  clearElement();
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
