@@ -6,7 +6,7 @@ import { createElement } from './createMiniatures.js';
 const userModalElement = document.querySelector('.big-picture');
 const userModalTitle = document.querySelector('.big-picture__title');
 
-const userModalOpenElement = document.querySelector('.pictures').querySelector('.picture');
+const userModalOpenElement = document.querySelector('.pictures');
 const userModalCloseElement = userModalElement.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
