@@ -3,7 +3,7 @@ const pictureElement = document.querySelector('#picture').content.querySelector(
 
 const similarPhotoPosts = document.createDocumentFragment();
 
-export function createElement(randomPostData) {
+const createElement = (randomPostData) => {
   if (Array.isArray(randomPostData)) {
     randomPostData.forEach((item) => {
       const postElement = pictureElement.cloneNode(true);
@@ -16,5 +16,11 @@ export function createElement(randomPostData) {
     pictureContainer.append(similarPhotoPosts);
     return createElement();
   }
-}
+};
+
+//const clearElement = () => {
+//  createElement.innerHTML = '';
+//};
+
+export { createElement };
 
