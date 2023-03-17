@@ -12,6 +12,7 @@ const onDocumentKeydown = (evt) => {
     evt.preventDefault();
     modalElement.classList.add('hidden');
     modalElementTitle.classList.add('visually-hidden');
+    document.body.classList.remove('modal-open');
   }
 };
 
@@ -19,12 +20,12 @@ const userModalOpen = (evt) => {
   if (evt.target.closest('.picture')) {
     modalElement.classList.remove('hidden');
     modalElementTitle.classList.remove('visually-hidden');
-
+    document.body.classList.add('modal-open');
     document.addEventListener('keydown', onDocumentKeydown);
   }
 };
 
-const closeUserModal = () => {
+const closeModal = () => {
   modalElement.classList.add('hidden');
   modalElementTitle.classList.add('visually-hidden');
 
@@ -40,11 +41,13 @@ pictureContainer.addEventListener('keydown', (evt) => {
 });
 
 modalCloseElement.addEventListener('click', () => {
-  closeUserModal();
+  closeModal();
+  document.body.classList.remove('modal-open');
 });
 
 modalCloseElement.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
-    closeUserModal();
+    closeModal();
   }
+  document.body.classList.remove('modal-open');
 });
