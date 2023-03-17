@@ -1,4 +1,4 @@
-const pictureContainer = document.querySelector('.pictures');
+export const pictureContainer = document.querySelector('.pictures');
 const pictureElement = document.querySelector('#picture').content.querySelector('.picture');
 
 const similarPhotoPosts = document.createDocumentFragment();
@@ -14,13 +14,8 @@ const createElement = (randomPostData) => {
       similarPhotoPosts.appendChild(postElement);
     });
     pictureContainer.append(similarPhotoPosts);
-    return createElement();
   }
 };
-
-//const clearElement = () => {
-//  createElement.innerHTML = '';
-//};
 
 export { createElement };
 

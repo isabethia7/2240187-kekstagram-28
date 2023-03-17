@@ -1,50 +1,49 @@
 import { isEscapeKey, isEnterKey } from './util.js';
-import { createElement } from './createMiniatures.js';
+import { pictureContainer } from './createMiniatures.js';
 //import './user-form.js';
 
 
-const userModalElement = document.querySelector('.big-picture');
-const userModalTitle = document.querySelector('.big-picture__title');
-
-const userModalOpenElement = document.querySelector('.pictures');
-const userModalCloseElement = userModalElement.querySelector('.big-picture__cancel');
+const modalElement = document.querySelector('.big-picture');
+const modalElementTitle = document.querySelector('.big-picture__title');
+const modalCloseElement = modalElement.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    closeUserModal();
+    modalElement.classList.add('hidden');
+    modalElementTitle.classList.add('visually-hidden');
   }
 };
 
-function userModalOpen() {
-  userModalElement.classList.remove('hidden');
-  userModalTitle.classList.remove('visually-hidden');
+const userModalOpen = (evt) => {
+  if (evt.target.closest('.picture')) {
+    modalElement.classList.remove('hidden');
+    modalElementTitle.classList.remove('visually-hidden');
 
-  document.addEventListener('keydown', onDocumentKeydown);
-}
+    document.addEventListener('keydown', onDocumentKeydown);
+  }
+};
 
-function closeUserModal() {
-  userModalElement.classList.add('hidden');
-  userModalTitle.classList.add('visually-hidden');
+const closeUserModal = () => {
+  modalElement.classList.add('hidden');
+  modalElementTitle.classList.add('visually-hidden');
 
   document.removeEventListener('keydown', onDocumentKeydown);
-}
+};
 
-userModalOpenElement.addEventListener('click', () => {
-  userModalOpen();
-});
+pictureContainer.addEventListener('click', userModalOpen);
 
-userModalOpenElement.addEventListener('keydown', (evt) => {
+pictureContainer.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     userModalOpen();
   }
 });
 
-userModalCloseElement.addEventListener('click', () => {
+modalCloseElement.addEventListener('click', () => {
   closeUserModal();
 });
 
-userModalCloseElement.addEventListener('keydown', (evt) => {
+modalCloseElement.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     closeUserModal();
   }
