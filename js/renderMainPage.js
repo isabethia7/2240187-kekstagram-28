@@ -1,4 +1,4 @@
-export const pictureContainer = document.querySelector('.pictures');
+export const thumbnailContainer = document.querySelector('.pictures');
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnail = document.createDocumentFragment();
 
@@ -13,7 +13,7 @@ const renderThumbnail = (thumbnailData) => {
       thumbnailElement.querySelector('.picture__likes').textContent = dataItem.likes;
       thumbnail.appendChild(thumbnailElement);
     });
-    pictureContainer.append(thumbnail);
+    thumbnailContainer.append(thumbnail);
   }
 };
 

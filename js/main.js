@@ -2,8 +2,8 @@
 import { photoDescriptionArray } from './data.js';
 import { renderThumbnail } from './renderMainPage.js';
 
-const mainPage = photoDescriptionArray();
-renderThumbnail(mainPage);
+const thumbnailsData = photoDescriptionArray();
+renderThumbnail(thumbnailsData);
 
 console.log(mainPage);
 

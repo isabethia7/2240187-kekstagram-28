@@ -1,6 +1,6 @@
 import { isEscapeKey, isEnterKey } from './util.js';
-import { pictureContainer, fillComment } from './createMiniatures.js';
-import { finalPosts } from './main.js'; // ДОБАВИЛ забираем данные сгенерированой кортинки из main
+import { thumbnailContainer } from './renderthumbnailData.js';
+import { thumbnailsData } from './main.js'; // ДОБАВИЛ забираем данные сгенерированой кортинки из main
 
 
 const modalElement = document.querySelector('.big-picture');
@@ -20,7 +20,7 @@ const onDocumentKeydown = (evt) => {
 const userModalOpen = (evt) => {
   if (evt.target.closest('.picture')) {
     const target = evt.target.closest('.picture'); //выбираем из pictures - picture
-    const currentData = finalPosts.find((item) => item.id === Number(target.dataset.id)); //ищем в нашем массиве с картинками тот элемент который равен по ID картинке по которой мы клинкули. ID картинки мы присваивали в createMiniatures.js строка 10
+    const currentData = thumbnailsData.find((item) => item.id === Number(target.dataset.id)); //ищем в нашем массиве с картинками тот элемент который равен по ID картинке по которой мы клинкули. ID картинки мы присваивали в createMiniatures.js строка 10
     console.log(currentData.commentText);
     modalElement.classList.remove('hidden');
     modalElementTitle.classList.remove('visually-hidden');
@@ -54,9 +54,9 @@ const closeModal = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-pictureContainer.addEventListener('click', userModalOpen);
+thumbnailContainer.addEventListener('click', userModalOpen);
 
-pictureContainer.addEventListener('keydown', (evt) => {
+thumbnailContainer.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     userModalOpen();
   }
