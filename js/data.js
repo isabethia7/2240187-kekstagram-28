@@ -86,21 +86,19 @@ const commentsArray = () => Array.from({
   length: getRandomInteger(commentCountMin, commentCountMax)
 }, commentsGenerator);
 
-const postDescription = () => {
-  const postDescriptionArray = [];
-  for (let photoNumber = photoUrl(); descriptionsCount >= photoNumber; photoNumber++) {
-    const randomDescriptionIndex = getRandomInteger(0, descriptions.length - 1);
-    const randomLikesIndex = getRandomInteger(likesMinCount, likesMaxCount);
-    const DescriptionArray = {
-      id: photoId(),
-      url: `photos/${photoNumber}.jpg`,
-      description: descriptions[randomDescriptionIndex],
-      likes: randomLikesIndex,
-      comments: commentsArray()
-    };
-    postDescriptionArray.push(DescriptionArray);
-  }
-  return postDescriptionArray;
+const photoDescription = () => {
+  const randomDescriptionIndex = getRandomInteger(0, descriptions.length - 1);
+  const randomLikesIndex = getRandomInteger(likesMinCount, likesMaxCount);
+  return {
+    id: photoId(),
+    url: `photos/${photoUrl()}.jpg`,
+    description: descriptions[randomDescriptionIndex],
+    likes: randomLikesIndex,
+    comments: commentsArray()
+  };
 };
 
-export const photoDescriptionArray = postDescription();
+
+const photoDescriptionArray = () => Array.from({ length: descriptionsCount }, photoDescription);
+
+export { photoDescriptionArray };
