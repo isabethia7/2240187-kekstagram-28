@@ -1,8 +1,5 @@
 
 import { getRandomInteger } from './util.js';
-//import { isEscapeKey, isEnterKey } from './util.js';
-
-const descriptionsCount = 25;
 
 const personId = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25
@@ -74,25 +71,30 @@ const profile = [
   'Твоя Стерва',
 ];
 
-
 const createPostDescription = () => {
   const randomIdIndex = getRandomInteger(1, personId.length - 1);
   const randomAvatarIndex = getRandomInteger(1, avatar.length - 1);
-  const randomUrlIndex = getRandomInteger(1, urlAdress.length - 1);
   const randomDescriptionIndex = getRandomInteger(1, description.length - 1);
   const randomLikesIndex = getRandomInteger(0, likes.length - 1);
   const randomCommentIndex = getRandomInteger(1, comments.length - 1);
   const randomNameIndex = getRandomInteger(1, profile.length - 1);
-  return {
-    id: personId[randomIdIndex],
-    avatar: `img/${randomAvatarIndex}-avatar.svg`,
-    urlAdress: `photos/${randomUrlIndex}.jpg`,
-    description: description[randomDescriptionIndex],
-    likes: likes[randomLikesIndex],
-    comment: comments[randomCommentIndex],
-    ProfileName: profile[randomNameIndex],
-  };
+  const createPostDescriptionArray = [];
+
+  for (let photoNumber = 1; urlAdress.length >= photoNumber; photoNumber++) {
+    const DescriptionArray = {
+      id: personId[randomIdIndex],
+      avatar: `img/avatar-${randomAvatarIndex}.svg`,
+      urlAdress: `photos/${photoNumber}.jpg`,
+      description: description[randomDescriptionIndex],
+      likes: likes[randomLikesIndex],
+      profileName: profile[randomNameIndex],
+      comment: comments[randomCommentIndex],
+    };
+    createPostDescriptionArray.push(DescriptionArray);
+  }
+  return createPostDescriptionArray;
 };
 
+export const photoDescriptionArray = createPostDescription();
 
-export const photoDescriptionArray = () => Array.from({ length: descriptionsCount }, createPostDescription);
+console.log(photoDescriptionArray);
