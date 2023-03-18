@@ -6,4 +6,4 @@ import { createElement } from './createMiniatures.js';
 const finalPosts = photoDescriptionArray();
 createElement(finalPosts);
 
-
+export { finalPosts };
