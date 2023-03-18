@@ -71,16 +71,44 @@ const profile = [
   'Твоя Стерва',
 ];
 
-const createPostDescription = () => {
-  const randomIdIndex = getRandomInteger(1, personId.length - 1);
+//<li class="social__comment">
+//  <img
+//    class="social__picture"
+//    src="{{аватар}}"
+//    alt="{{имя комментатора}}"
+//    width="35" height="35">
+//    <p class="social__text">{{ текст комментария }}</p>
+//</li>
+
+const createComment = () => {
   const randomAvatarIndex = getRandomInteger(1, avatar.length - 1);
-  const randomDescriptionIndex = getRandomInteger(1, description.length - 1);
-  const randomLikesIndex = getRandomInteger(0, likes.length - 1);
-  const randomCommentIndex = getRandomInteger(1, comments.length - 1);
   const randomNameIndex = getRandomInteger(1, profile.length - 1);
+  const randomCommentTextIndex = getRandomInteger(1, comments.length - 1);
+  return {
+    avatar: `img/avatar-${randomAvatarIndex}.svg`,
+    commentText: comments[randomCommentTextIndex],
+    ProfileName: profile[randomNameIndex],
+  };
+};
+
+const createCommentsArray = () => {
+  const createCommentsArrayTemp = [];
+  for (let commentsNumber = 1; commentsNumber <= getRandomInteger(5, 15); commentsNumber++) {
+    const comment = createComment();
+    createCommentsArrayTemp.push(comment);
+  }
+  return {createCommentsArrayTemp};
+};
+
+const createPostDescription = () => {
   const createPostDescriptionArray = [];
 
   for (let photoNumber = 1; urlAdress.length >= photoNumber; photoNumber++) {
+    const randomIdIndex = getRandomInteger(1, personId.length - 1);
+    const randomAvatarIndex = getRandomInteger(1, avatar.length - 1);
+    const randomDescriptionIndex = getRandomInteger(1, description.length - 1);
+    const randomLikesIndex = getRandomInteger(0, likes.length - 1);
+    const randomNameIndex = getRandomInteger(1, profile.length - 1);
     const DescriptionArray = {
       id: personId[randomIdIndex],
       avatar: `img/avatar-${randomAvatarIndex}.svg`,
@@ -88,7 +116,8 @@ const createPostDescription = () => {
       description: description[randomDescriptionIndex],
       likes: likes[randomLikesIndex],
       profileName: profile[randomNameIndex],
-      comment: comments[randomCommentIndex],
+      commentNumber: createCommentsArray().length,
+      commentText: createCommentsArray()
     };
     createPostDescriptionArray.push(DescriptionArray);
   }
@@ -97,4 +126,5 @@ const createPostDescription = () => {
 
 export const photoDescriptionArray = createPostDescription();
 
-console.log(photoDescriptionArray);
+console.log(createCommentsArray());
+
