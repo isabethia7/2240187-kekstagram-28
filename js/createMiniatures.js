@@ -7,7 +7,7 @@ const createElement = (randomPostData) => {
   if (Array.isArray(randomPostData)) {
     randomPostData.forEach((item) => {
       const postElement = pictureElement.cloneNode(true);
-      postElement.setAttribute('data-picture-id', item.id);
+      postElement.dataset.id = item.id;
       postElement.querySelector('.picture__img').src = item.urlAdress;
       postElement.querySelector('.picture__comments').textContent = item.comment.length;
       postElement.querySelector('.picture__likes').textContent = item.likes;
