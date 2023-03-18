@@ -1,20 +1,7 @@
 
-import { getRandomInteger } from './util.js';
+import { getRandomInteger, getUniqueValue } from './util.js';
 
-const personId = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25
-];
-
-
-const urlAdress = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25
-];
-
-const avatar = [
-  1, 2, 3, 4, 5, 6
-];
-
-const description = [
+const descriptions = [
   'Sunny days',
   'Rain and sun',
   'Must visit place in Spain!',
@@ -42,10 +29,6 @@ const description = [
   'see me in a week',
 ];
 
-const likes = [
-  15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200
-];
-
 const comments = [
   'Всё отлично!',
   'В целом всё неплохо.Но не всё.',
@@ -56,7 +39,7 @@ const comments = [
   'Лица у людей на фотке перекошены, как будто их избивают.Как можно было поймать такой неудачный момент ?!'
 ];
 
-const profile = [
+const names = [
   'Анюта Мамочка',
   'Ваня Слесарь',
   'Санёк Алкоголик',
@@ -70,61 +53,54 @@ const profile = [
   'Девочка Припевочка',
   'Твоя Стерва',
 ];
+const idmin = 1;
+const idMax = 25;
+const urlMin = 1;
+const urlMax = 25;
+const avatarMinCount = 1;
+const avatarMaxCount = 6;
+const likesMinCount = 15;
+const likesMaxCount = 200;
+const commentIdMin = 1;
+const commentIdMax = 1000;
+const commentCountMin = 3;
+const commentCountMax = 20;
+const descriptionsCount = 25;
+const photoId = getUniqueValue(idmin, idMax);
+const photoUrl = getUniqueValue(urlMin, urlMax);
+const commentId = getUniqueValue(commentIdMin, commentIdMax);
 
-//<li class="social__comment">
-//  <img
-//    class="social__picture"
-//    src="{{аватар}}"
-//    alt="{{имя комментатора}}"
-//    width="35" height="35">
-//    <p class="social__text">{{ текст комментария }}</p>
-//</li>
-
-const createComment = () => {
-  const randomAvatarIndex = getRandomInteger(1, avatar.length - 1);
-  const randomNameIndex = getRandomInteger(1, profile.length - 1);
-  const randomCommentTextIndex = getRandomInteger(1, comments.length - 1);
+const commentsGenerator = () => {
+  const randomAvatarIndex = getRandomInteger(avatarMinCount, avatarMaxCount);
+  const randomNameIndex = getRandomInteger(0, names.length - 1);
+  const randomCommentTextIndex = getRandomInteger(0, comments.length - 1);
   return {
+    id: commentId(),
     avatar: `img/avatar-${randomAvatarIndex}.svg`,
-    commentText: comments[randomCommentTextIndex],
-    ProfileName: profile[randomNameIndex],
+    message: comments[randomCommentTextIndex],
+    name: names[randomNameIndex],
   };
 };
 
-const createCommentsArray = () => {
-  const createCommentsArrayTemp = [];
-  for (let commentsNumber = 1; commentsNumber <= getRandomInteger(5, 15); commentsNumber++) {
-    const comment = createComment();
-    createCommentsArrayTemp.push(comment);
-  }
-  return {createCommentsArrayTemp};
-};
+const commentsArray = () => Array.from({
+  length: getRandomInteger(commentCountMin, commentCountMax)
+}, commentsGenerator);
 
-const createPostDescription = () => {
-  const createPostDescriptionArray = [];
-
-  for (let photoNumber = 1; urlAdress.length >= photoNumber; photoNumber++) {
-    const randomIdIndex = getRandomInteger(1, personId.length - 1);
-    const randomAvatarIndex = getRandomInteger(1, avatar.length - 1);
-    const randomDescriptionIndex = getRandomInteger(1, description.length - 1);
-    const randomLikesIndex = getRandomInteger(0, likes.length - 1);
-    const randomNameIndex = getRandomInteger(1, profile.length - 1);
+const postDescription = () => {
+  const postDescriptionArray = [];
+  for (let photoNumber = photoUrl(); descriptionsCount >= photoNumber; photoNumber++) {
+    const randomDescriptionIndex = getRandomInteger(0, descriptions.length - 1);
+    const randomLikesIndex = getRandomInteger(likesMinCount, likesMaxCount);
     const DescriptionArray = {
-      id: personId[randomIdIndex],
-      avatar: `img/avatar-${randomAvatarIndex}.svg`,
-      urlAdress: `photos/${photoNumber}.jpg`,
-      description: description[randomDescriptionIndex],
-      likes: likes[randomLikesIndex],
-      profileName: profile[randomNameIndex],
-      commentNumber: createCommentsArray().length,
-      commentText: createCommentsArray()
+      id: photoId(),
+      url: `photos/${photoNumber}.jpg`,
+      description: descriptions[randomDescriptionIndex],
+      likes: randomLikesIndex,
+      comments: commentsArray()
     };
-    createPostDescriptionArray.push(DescriptionArray);
+    postDescriptionArray.push(DescriptionArray);
   }
-  return createPostDescriptionArray;
+  return postDescriptionArray;
 };
 
-export const photoDescriptionArray = createPostDescription();
-
-console.log(createCommentsArray());
-
+export const photoDescriptionArray = postDescription();
