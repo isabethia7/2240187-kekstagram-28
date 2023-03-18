@@ -1,8 +1,10 @@
-import './user-modal.js';
+//import './user-modal.js';
 import { photoDescriptionArray } from './data.js';
-import { createElement } from './createMiniatures.js';
+import { renderThumbnail } from './renderMainPage.js';
 
-const finalPosts = photoDescriptionArray;
-createElement(finalPosts);
-console.log(finalPosts);
-export { finalPosts };
+const mainPage = photoDescriptionArray();
+renderThumbnail(mainPage);
+
+console.log(mainPage);
+
+export { mainPage };
