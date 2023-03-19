@@ -1,6 +1,6 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 import { thumbnailContainer } from './renderThumbnail.js';
-import { renderComment } from './renderComment.js';
+import { renderComment, clearComment } from './renderComment.js';
 import { thumbnailsData } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -54,6 +54,7 @@ const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+  clearComment();
 };
 
 thumbnailContainer.addEventListener('click', openBigPicture);
