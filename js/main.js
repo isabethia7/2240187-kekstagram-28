@@ -1,10 +1,10 @@
-//import './user-modal.js';
+import './renderBigPicture.js';
 import { photoDescriptionArray } from './data.js';
-import { renderThumbnail } from './renderMainPage.js';
+import { renderThumbnail } from './renderThumbnail.js';
 
 const thumbnailsData = photoDescriptionArray();
 renderThumbnail(thumbnailsData);
 
-console.log(mainPage);
+console.log(thumbnailsData);
 
-export { mainPage };
+export { thumbnailsData };
