@@ -4,13 +4,13 @@ const thumbnail = document.createDocumentFragment();
 
 const renderThumbnail = (thumbnailData) => {
   if (Array.isArray(thumbnailData)) {
-    thumbnailData.forEach((dataItem) => {
+    thumbnailData.forEach((item) => {
       const thumbnailElement = thumbnailTemplate.cloneNode(true);
-      thumbnailElement.dataset.id = dataItem.id;
-      thumbnailElement.querySelector('.picture__img').src = dataItem.url;
-      thumbnailElement.querySelector('.picture__img').alt = dataItem.description;
-      thumbnailElement.querySelector('.picture__comments').textContent = dataItem.comments.length;
-      thumbnailElement.querySelector('.picture__likes').textContent = dataItem.likes;
+      thumbnailElement.dataset.id = item.id;
+      thumbnailElement.querySelector('.picture__img').src = item.url;
+      thumbnailElement.querySelector('.picture__img').alt = item.description;
+      thumbnailElement.querySelector('.picture__comments').textContent = item.comments.length;
+      thumbnailElement.querySelector('.picture__likes').textContent = item.likes;
       thumbnail.appendChild(thumbnailElement);
     });
     thumbnailContainer.append(thumbnail);

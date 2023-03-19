@@ -4,13 +4,13 @@ const comment = document.createDocumentFragment();
 
 const renderComment = (randomCommentData) => {
   if (Array.isArray(randomCommentData)) {
-    randomCommentData.forEach((dataItem) => {
-      const postElement = commentTemplate.cloneNode(true);
-      commentsContainer.dataset.id = dataItem.id;
-      commentsContainer.querySelector('.social__picture').src = dataItem.avatar;
-      commentsContainer.querySelector('.social__picture').alt = dataItem.name;
-      commentsContainer.querySelector('.social__text').innerHTML = dataItem.message;
-      comment.appendChild(postElement);
+    randomCommentData.forEach((item) => {
+      const commentElement = commentTemplate.cloneNode(true);
+      commentTemplate.dataset.id = item.id;
+      commentTemplate.querySelector('.social__picture').src = item.avatar;
+      commentTemplate.querySelector('.social__picture').alt = item.name;
+      commentTemplate.querySelector('.social__text').innerHTML = item.message;
+      comment.appendChild(commentElement);
     });
     commentsContainer.append(comment);
   }

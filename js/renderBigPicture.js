@@ -34,6 +34,8 @@ const openBigPicture = (evt) => {
     bigPictureLikes.innerHTML = currentThumbnailData.likes;
     bigPictureComments.innerHTML = currentThumbnailData.comments.length;
 
+    console.log(currentThumbnailData.comments);
+
     renderComment(currentThumbnailData.comments);
 
     document.addEventListener('keydown', onDocumentKeydown);
