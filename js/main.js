@@ -5,6 +5,4 @@ import { renderThumbnail } from './renderThumbnail.js';
 const thumbnailsData = photoDescriptionArray();
 renderThumbnail(thumbnailsData);
 
-console.log(thumbnailsData);
-
 export { thumbnailsData };
