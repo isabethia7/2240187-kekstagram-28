@@ -40,16 +40,6 @@ const openBigPicture = (evt) => {
   }
 };
 
-//<li class="social__comment">
-//  <img
-//    class="social__picture"
-//    src="{{аватар}}"
-//    alt="{{имя комментатора}}"
-//    width="35" height="35">
-//    <p class="social__text">{{ текст комментария }}</p>
-//</li>
-
-
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
