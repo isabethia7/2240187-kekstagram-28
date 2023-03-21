@@ -89,7 +89,7 @@ const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  commentShowCounter = 5;
+  commentShowCounter = 0;
   clearComment();
 };
 
