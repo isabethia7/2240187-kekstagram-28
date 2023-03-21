@@ -46,7 +46,6 @@ const commentsShow = (allComments) => {
 };
 
 const commentsLoad = (commentsArray) => {
-  commentsArray = bigPictureCommentsArray();
 
   commentsLoadCounter(commentsArray.length);
 
@@ -59,7 +58,7 @@ const commentsLoad = (commentsArray) => {
 };
 
 const loadMoreComments = () => {
-  commentsLoad();
+  commentsLoad(bigPictureCommentsArray());
   commentCounterUpdate();
 };
 
@@ -79,7 +78,7 @@ const openBigPicture = (evt) => {
 
     renderComments(currentThumbnailData.comments);
 
-    commentsLoad();
+    commentsLoad(bigPictureCommentsArray());
     commentCounterUpdate();
 
     loadCommentsButton.addEventListener('click', loadMoreComments);
