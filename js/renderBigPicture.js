@@ -35,10 +35,10 @@ const commentCounterUpdate = () => {
 };
 
 const commentsShow = (allComments) => {
+  const commentsToShow = allComments.slice(0, commentShowCounter);
   for (const comment of allComments) {
     comment.classList.add('hidden');
   }
-  const commentsToShow = allComments.slice(0, commentShowCounter);
   for (const commentToShow of commentsToShow) {
     commentToShow.classList.remove('hidden');
   }
