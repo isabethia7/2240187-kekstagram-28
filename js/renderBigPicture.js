@@ -1,6 +1,6 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 import { thumbnailContainer } from './renderThumbnail.js';
-import { renderComment, clearComment } from './renderComment.js';
+import { renderComments, clearComment } from './renderComment.js';
 import { thumbnailsData } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -27,9 +27,9 @@ const commentCounterUpdate = () => {
   commentsCount.textContent = `${commentShowCounter} из ${commentsPostAll}`;
 };
 
-const commentsRender = () => {
+const commentsLoad = () => {
   const commentsArray = Array.from(bigPicture.querySelectorAll('.social__comment'));
-  const commentsCounter = () => {
+  const commentsLoadCounter = () => {
     if ((commentsArray.length - commentShowCounter) < 5) {
       commentShowCounter = commentShowCounter + (commentsArray.length - commentShowCounter);
     } else {
@@ -47,7 +47,7 @@ const commentsRender = () => {
     }
   };
 
-  commentsCounter();
+  commentsLoadCounter();
 
   if (commentShowCounter < commentsArray.length) {
     commentsShow();
@@ -57,12 +57,10 @@ const commentsRender = () => {
   }
 };
 
-const onCommentsLoaderButtonClick = () => {
-  commentsRender();
+const loadMoreComments = () => {
+  commentsLoad();
   commentCounterUpdate();
 };
-
-loadCommentsButton.addEventListener('click', onCommentsLoaderButtonClick);
 
 
 const openBigPicture = (evt) => {
@@ -78,11 +76,12 @@ const openBigPicture = (evt) => {
     bigPictureLikes.innerHTML = currentThumbnailData.likes;
     commentsPostAll = currentThumbnailData.comments.length;
     //bigPictureComments.innerHTML = currentThumbnailData.comments.length;
-    renderComment(currentThumbnailData.comments);
+    renderComments(currentThumbnailData.comments);
 
-    commentsRender();
+    commentsLoad();
     commentCounterUpdate();
 
+    loadCommentsButton.addEventListener('click', loadMoreComments);
     document.addEventListener('keydown', onDocumentKeydown);
   }
 };
