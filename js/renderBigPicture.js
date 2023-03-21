@@ -13,6 +13,7 @@ const photoDescription = bigPicture.querySelector('.social__caption');
 const loadCommentsButton = bigPicture.querySelector('.comments-loader');
 let commentShowCounter = 0;
 
+const bigPictureCommentsArray = () => Array.from(bigPicture.querySelectorAll('.social__comment'));
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -44,8 +45,8 @@ const commentsShow = (allComments) => {
   }
 };
 
-const commentsLoad = () => {
-  const commentsArray = Array.from(bigPicture.querySelectorAll('.social__comment'));
+const commentsLoad = (commentsArray) => {
+  commentsArray = bigPictureCommentsArray();
 
   commentsLoadCounter(commentsArray.length);
 
@@ -75,6 +76,7 @@ const openBigPicture = (evt) => {
     photoDescription.innerHTML = currentThumbnailData.description;
     bigPictureLikes.innerHTML = currentThumbnailData.likes;
     bigPictureCommentsAll.innerHTML = currentThumbnailData.comments.length;
+
     renderComments(currentThumbnailData.comments);
 
     commentsLoad();
