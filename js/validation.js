@@ -1,90 +1,83 @@
+
 const imageUploadForm = document.querySelector('.img-upload__form');
-const hashtagRegexp = /^#[a-zа-яё0-9]{1,19}$/i;
-const maxHashtagNumber = 5;
+const submitButton = imageUploadForm.querySelector('.img-upload__submit');
+const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+const inputComment = imageUploadForm.querySelector('.text__description');
+const maxHashtagCount = 5;
+
 
 const pristine = new Pristine(imageUploadForm, {
-  classTo: 'img-upload__text',
-  errorClass: 'img-upload__text--invalid',
-  successClass: 'img-upload__text--valid',
-  errorTextParent: 'img-upload__text',
-  errorTextTag: 'span',
-  errorTextClass: 'img-upload__error'
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
 });
 
-const hashtagValidation = function (validateString) {
-  const hashtagByWord = validateString.split(' ');
-  if (hashtagByWord.length <= maxHashtagNumber) {
-    for (const hashtagWord of hashtagByWord) {
-      if (hashtagRegexp.test(hashtagWord) === true) {
-        continue;
-      } else {
-        return false;
-      }
-    }
+function validateHashtag (item) {
+  if (item === '') {
     return true;
-  } else {
-    return false;
   }
-};
-
-function validateHashtagCount(value) {
-  const hashArray = value.split(' ');
-  return hashArray.length <= HASHTAG_MAX_COUNT;
+  const inputString = item.split(' ');
+  const hashtagRegexp = /^#[a-zа-яё0-9]{1,19}$/i;
+  for (let i = 0; i < inputString.length; i++) {
+    const hashtag = inputString[i];
+    if (!hashtagRegexp.test(hashtag)) {
+      return false;
+    }
+  }
+  return true;
 }
 
-//imgUploadForm.addEventListener('submit', (evt) => {
-//  if (!pristine.validate()) {
-//    evt.preventDefault();
-//  }
-//});
-
-const submitImageUpload = (evt) => {
-  //const hashtagString = document.querySelector('text__hashtags').value;
-  //if (hashtagValidation(hashtagString) === false) {
-  //}
-  const valid = false;
-  if (valid === false) {
-    evt.preventDefault();
+function validateHashtagLength (item) {
+  const inputString = item.split(' ');
+  for (let i = 0; i < inputString.length; i++) {
+    if (inputString.length > maxHashtagCount) {
+      return false;
+    }
   }
-};
+  return true;
+}
 
-pristine.addValidator(
-  imageUploadForm.querySelector('.text__hashtags'),
-  validateHashtagCount,
-  'Неверный хештег. хештеги должны разделяться пробелом'
-);
 
-//imageUploadForm.addEventListener('submit', submitImageUpload);
-imageUploadForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  alert('submitting');
+function validateUniqueHashtag (item) {
+  const inputString = item.split(' ');
+  const usedHashtags = [];
+  for (let i = 0; i < inputString.length; i++) {
+    const hashtag = inputString[i];
+
+    if (usedHashtags[hashtag.toLowerCase()]) {
+      return false;
+    } else {
+      usedHashtags[hashtag.toLowerCase()] = true;
+    }
+  }
+  return true;
+}
+
+pristine.addValidator(hashtagInput, validateHashtag, 'Хэштег должен содержать только буквы и цифры. Хештег должен составлять не более пяти символов');
+pristine.addValidator(hashtagInput, validateHashtagLength, 'Один хэштег должен использоваться только один раз');
+pristine.addValidator(hashtagInput, validateUniqueHashtag, 'Может использоваться не более пяти хэштегов');
+
+hashtagInput.addEventListener('keyup', () => {
+  pristine.validate();
+  submitButton.disabled = (!pristine.validate());
 });
-/*
-console.log(hashtagValidation("#1234 #qwerty #asdfg #zxcvb")); // менше 5 и все хэштэги - будет true
-console.log(hashtagValidation("#1234 #qwerty #asdfg #zxcvb #bnmn")); // ровно 5 и все хэштэги - будет true
-console.log(hashtagValidation("#1234 #qwerty #asdfg #zxcvb bnmn")); // ровно 5 и есть не хэштэг - будет false
-console.log(hashtagValidation("#1234 #qwerty #asdfg #zxcvb #bnmn #bnmn2")); //болььше 5 и все - будет false
 
-*/
+function validateComment(item) {
 
-/*
-Как привязать функцию к кнопке
+  return item.length <= 140;
+}
 
-  < form >
-  a: <input type="number" name="a" id="a"><br>
-    b: <input type="number" name="b" id="b"><br>
-      <button onclick="add()">Add</button>
-    </>
+pristine.addValidator(inputComment, validateComment, 'Комментарий должен содержать не более 140 символов');
+
+inputComment.addEventListener('keyup', () => {
+  pristine.validate();
+  submitButton.disabled = (!pristine.validate());
+});
 
 
-        function add() {
-    var a = document.getElementById('a').value;
-        var b = document.getElementById('b').value;
+hashtagInput.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
 
-        var sum = parseInt(a) + parseInt(b);
-        alert(sum);
-  }
-      </script>
-*/
-
-//image-upload__submit
+inputComment.addEventListener('keydown', (evt) => {
+  evt.stopPropagation();
+});
