@@ -11,22 +11,13 @@ const uploadTemplate = document.querySelector('#upload-file');
 const cancelButton = document.querySelector('#upload-cancel');
 
 uploadTemplate.onchange = function () {
-  //uploadPhotoSection.classList.remove('.hidden'); не .hidden, а hidden
   uploadPhotoSection.classList.remove('hidden');
-  //modalUploadPhoto.classList.add('.modal-open'); - не так а вот как нижe
   document.body.classList.add('modal-open');
 };
 
 
-//uploadTemplate.oninput = function () {
-//  uploadPictureImg.src = /*регулярка].jpg*/;
-//};
-
-
 const closephotoForm = () => {
-  //uploadPhotoSection.classList.add('.hidden'); не.hidden, а hidden
   uploadPhotoSection.classList.add('hidden');
-  //modalUploadPhoto.classList.remove('.modal-open'); - не так а вот как нижe и не .modal-open а modal-open
   document.body.classList.remove('modal-open');
 };
 
