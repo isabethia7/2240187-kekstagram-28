@@ -1,7 +1,7 @@
 //const sliderElement = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
-let valueElementCurrent = document.querySelector('.scale__control--value');
+const valueElementCurrent = document.querySelector('.scale__control--value');
 const scaleStep = 25;
 const scaleMin = 25;
 const scaleMax = 100;
@@ -14,27 +14,29 @@ const scaleMax = 100;
 Значение должно изменяться с шагом в 25. Например, если значение поля установлено в 50 %, после нажатия на «+», значение должно стать равным 75 %.Максимальное значение — 100 %, минимальное — 25 %.Значение по умолчанию — 100 %;
 При изменении значения поля.scale__control--value изображению внутри.img - upload__preview должен добавляться соответствующий стиль CSS, который с помощью трансформации scale задаёт масштаб.Например, если в поле стоит значение 75 %, то в стиле изображения должно быть написано transform: scale(0.75).
 
+1) let valueElementCurrent = document.querySelector(".scale__control--value"); - ты получаешь весь элемент а тебе надо его атрибут value
+2) valueElementCurrent.value = 10% - э то строка и ты ее стравниваешь больше меньше числа. Надо преобразовать valueElementCurrent.value - через parseInt(valueElementCurrent.value, 10);
 */
 
 
 export const scaleOnClick = () => {
-  scaleControlSmaller.addEventListener('click', scaleOnClick);
-  scaleControlBigger.addEventListener('click', scaleOnClick);
+
   while (scaleMax > valueElementCurrent > scaleMin) {
     if (scaleControlSmaller.onclick) {
-      valueElementCurrent = valueElementCurrent - scaleStep;
+      valueElementCurrent.value = parseInt(valueElementCurrent.value, 10) - scaleStep;
     }
     if (scaleControlBigger.onclick) {
-      valueElementCurrent = valueElementCurrent + scaleStep;
+      valueElementCurrent.value = parseInt(valueElementCurrent.value, 10) + scaleStep;
     }
   }
-  if (valueElementCurrent === scaleMin) {
+  if (parseInt(valueElementCurrent.value, 10) === scaleMin) {
     scaleControlSmaller.disabled();
   }
-  if (valueElementCurrent === scaleMax) {
+  if (parseInt(valueElementCurrent.value, 10) === scaleMax) {
     scaleControlBigger.disabled();
   }
-  return scaleOnClick;
 };
 
 
+scaleControlSmaller.addEventListener('click', scaleOnClick);
+scaleControlBigger.addEventListener('click', scaleOnClick);
