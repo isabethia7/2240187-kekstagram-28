@@ -1,11 +1,11 @@
-const sliderElement = document.querySelector('.img-upload__scale');
+//const sliderElement = document.querySelector('.img-upload__scale');
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 let valueElementCurrent = document.querySelector('.scale__control--value');
 const scaleStep = 25;
 const scaleMin = 25;
 const scaleMax = 100;
-const scaleDefault = 100;
+//const scaleDefault = 100;
 
 /*
 2.1.Масштаб:
