@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { scaleOnClick } from './scale.js';
 
 const uploadPhotoSection = document.querySelector('.img-upload__overlay');
 const uploadTemplate = document.querySelector('#upload-file');
@@ -7,6 +8,7 @@ const cancelButton = document.querySelector('#upload-cancel');
 uploadTemplate.onchange = function () {
   uploadPhotoSection.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  scaleOnClick ();
 };
 
 
