@@ -1,11 +1,11 @@
-//const sliderElement = document.querySelector('.img-upload__scale');
-const scaleControlSmaller = document.querySelector('.scale__control--smaller');
-const scaleControlBigger = document.querySelector('.scale__control--bigger');
-const valueElementCurrent = document.querySelector('.scale__control--value');
+export const scaleSmaller = document.querySelector('.scale__control--smaller');
+export const scaleBigger = document.querySelector('.scale__control--bigger');
+export const scaleValueControl = document.querySelector('.scale__control--value');
+const imagePreview = document.querySelector('.img-upload__preview img');
 const scaleStep = 25;
 const scaleMin = 25;
 const scaleMax = 100;
-//const scaleDefault = 100;
+export const scaleDefault = 100;
 
 /*
 2.1.Масштаб:
@@ -19,24 +19,31 @@ const scaleMax = 100;
 */
 
 
-export const scaleOnClick = () => {
-
-  while (scaleMax > valueElementCurrent > scaleMin) {
-    if (scaleControlSmaller.onclick) {
-      valueElementCurrent.value = parseInt(valueElementCurrent.value, 10) - scaleStep;
-    }
-    if (scaleControlBigger.onclick) {
-      valueElementCurrent.value = parseInt(valueElementCurrent.value, 10) + scaleStep;
-    }
-  }
-  if (parseInt(valueElementCurrent.value, 10) === scaleMin) {
-    scaleControlSmaller.disabled();
-  }
-  if (parseInt(valueElementCurrent.value, 10) === scaleMax) {
-    scaleControlBigger.disabled();
-  }
+export const scaleImageReset = () => {
+  imagePreview.removeAttribute('style');
 };
 
+function scaleImage(scaleValue) {
+  scaleValueControl.value = `${scaleValue}%`;
+  imagePreview.style.transform = `scale(${scaleValue / 100})`;
+}
 
-scaleControlSmaller.addEventListener('click', scaleOnClick);
-scaleControlBigger.addEventListener('click', scaleOnClick);
+export function buttonSmaller () {
+  const scaleCurrentValue = parseInt(scaleValueControl.value, 10);
+  let scaleNewValue = scaleCurrentValue - scaleStep;
+  if (scaleNewValue < scaleMin) {
+    scaleNewValue = scaleMin;
+    scaleImage(scaleNewValue);
+  }
+  scaleImage(scaleNewValue);
+}
+
+export function buttonBigger() {
+  const scaleCurrentValue = parseInt(scaleValueControl.value, 10);
+  let scaleNewValue = scaleCurrentValue + scaleStep;
+  if (scaleNewValue > scaleMax) {
+    scaleNewValue = scaleMax;
+    scaleImage(scaleNewValue);
+  }
+  scaleImage(scaleNewValue);
+}
