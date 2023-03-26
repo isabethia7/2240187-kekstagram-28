@@ -1,8 +1,8 @@
 
 export const imageUploadForm = document.querySelector('.img-upload__form');
-const submitButton = imageUploadForm.querySelector('.img-upload__submit');
-const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
-const inputComment = imageUploadForm.querySelector('.text__description');
+//const submitButton = imageUploadForm.querySelector('.img-upload__submit');
+export const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
+export const commentInput = imageUploadForm.querySelector('.text__description');
 const maxHashtagCount = 5;
 const maxCommentCharacters = 140;
 
@@ -12,7 +12,7 @@ export const pristine = new Pristine(imageUploadForm, {
   errorTextParent: 'img-upload__field-wrapper',
 });
 
-function validateHashtag (hashtagString) {
+function validateHashtag(hashtagString) {
   if (hashtagString === '') {
     return true;
   }
@@ -57,23 +57,10 @@ function validateComment(commentString) {
 pristine.addValidator(hashtagInput, validateHashtag, 'Хэштег должен содержать только буквы и цифры. Хэштег должен начинаться с #. Хештег должен составлять не более 19 символов');
 pristine.addValidator(hashtagInput, validateHashtagCount, 'Может использоваться не более пяти хэштегов');
 pristine.addValidator(hashtagInput, validateUniqueHashtag, 'Один хэштег должен использоваться только один раз');
-pristine.addValidator(inputComment, validateComment, 'Комментарий должен содержать не более 140 символов');
+pristine.addValidator(commentInput, validateComment, 'Комментарий должен содержать не более 140 символов');
 
-hashtagInput.addEventListener('keyup', () => {
-  pristine.validate();
-  submitButton.disabled = (!pristine.validate());
-});
-
-inputComment.addEventListener('keyup', () => {
-  pristine.validate();
-  submitButton.disabled = (!pristine.validate());
-});
-
-
-hashtagInput.addEventListener('keydown', (evt) => {
-  evt.stopPropagation();
-});
-
-inputComment.addEventListener('keydown', (evt) => {
-  evt.stopPropagation();
+imageUploadForm.addEventListener('submit', (evt) => {
+  if (!pristine.validate()) {
+    evt.preventDefault();
+  }
 });
