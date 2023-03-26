@@ -1,20 +1,23 @@
 import { isEscapeKey } from './util.js';
-import { scaleOnClick } from './scale.js';
+import './scale.js';
+import { imageUploadForm, pristine } from './validation.js';
+
 
 const uploadPhotoSection = document.querySelector('.img-upload__overlay');
-const uploadTemplate = document.querySelector('#upload-file');
+const imageUpload = document.querySelector('#upload-file');
 const cancelButton = document.querySelector('#upload-cancel');
 
-uploadTemplate.onchange = function () {
+imageUpload.onchange = function () {
   uploadPhotoSection.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  scaleOnClick ();
 };
 
 
 const closephotoForm = () => {
   uploadPhotoSection.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  imageUploadForm.reset();
+  pristine.reset();
 };
 
 cancelButton.addEventListener('click', () => {
