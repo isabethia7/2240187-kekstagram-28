@@ -1,7 +1,7 @@
 export const scaleSmaller = document.querySelector('.scale__control--smaller');
 export const scaleBigger = document.querySelector('.scale__control--bigger');
 export const scaleValueControl = document.querySelector('.scale__control--value');
-const imagePreview = document.querySelector('.img-upload__preview img');
+export const imagePreview = document.querySelector('.img-upload__preview img');
 const scaleStep = 25;
 const scaleMin = 25;
 const scaleMax = 100;
