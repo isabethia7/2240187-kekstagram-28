@@ -34,7 +34,7 @@ const removeInputListener = () => {
   commentInput.removeEventListener('focus', inputInFocus);
   hashtagInput.removeEventListener('blur', inputOutFocus);
   commentInput.removeEventListener('blur', inputOutFocus);
-}
+};
 
 function closeImageRedactor() {
   uploadPhotoSection.classList.add('hidden');
