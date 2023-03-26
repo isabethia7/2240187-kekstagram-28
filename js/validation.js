@@ -1,5 +1,5 @@
 
-const imageUploadForm = document.querySelector('.img-upload__form');
+export const imageUploadForm = document.querySelector('.img-upload__form');
 const submitButton = imageUploadForm.querySelector('.img-upload__submit');
 const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
 const inputComment = imageUploadForm.querySelector('.text__description');
@@ -7,7 +7,7 @@ const maxHashtagCount = 5;
 const maxCommentCharacters = 140;
 
 
-const pristine = new Pristine(imageUploadForm, {
+export const pristine = new Pristine(imageUploadForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
 });
@@ -17,7 +17,7 @@ function validateHashtag (hashtagString) {
     return true;
   }
   const hashtagRegexp = /^#[a-zа-яё0-9]{1,19}$/i;
-  const hashtagStringArray = hashtagString.split(' ');
+  const hashtagStringArray = hashtagString.trim().split(' ');
   for (let i = 0; i < hashtagStringArray.length; i++) {
     const hashtag = hashtagStringArray[i];
     if (!hashtagRegexp.test(hashtag)) {
@@ -28,7 +28,7 @@ function validateHashtag (hashtagString) {
 }
 
 function validateHashtagCount(hashtagString) {
-  const hashtagStringArray = hashtagString.split(' ');
+  const hashtagStringArray = hashtagString.trim().split(' ');
   if (hashtagStringArray.length > maxHashtagCount) {
     return false;
   }
@@ -37,7 +37,7 @@ function validateHashtagCount(hashtagString) {
 
 
 function validateUniqueHashtag(hashtagString) {
-  const hashtagStringArray = hashtagString.split(' ');
+  const hashtagStringArray = hashtagString.trim().split(' ');
   const usedHashtags = {};
   for (let i = 0; i < hashtagStringArray.length; i++) {
     const hashtag = hashtagStringArray[i];
