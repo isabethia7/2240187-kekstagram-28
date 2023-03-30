@@ -118,3 +118,5 @@ thumbnailContainer.addEventListener('keydown', (evt) => {
     openBigPicture();
   }
 });
+
+//user modal

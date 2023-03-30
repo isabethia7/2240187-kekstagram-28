@@ -1,3 +1,6 @@
+import { createLoader } from './load.js';
+
+
 import { isEscapeKey } from './util.js';
 import { scaleImageReset, scaleDefault, scaleValueControl, scaleBigger, scaleSmaller, buttonBigger, buttonSmaller } from './scale.js';
 import { imageUploadForm, hashtagInput, commentInput, pristine } from './validation.js';
@@ -64,6 +67,9 @@ function openImageRedactor() {
   cancelButton.addEventListener('click', closeImageRedactor);
   imageUploadForm.addEventListener('change', effectChange);
   document.addEventListener('keydown', onDocKeydown);
+  const loadAnimals = createLoader(console.log, console.error);
+
+  loadAnimals();
 }
 
 imageUpload.addEventListener('change', openImageRedactor);

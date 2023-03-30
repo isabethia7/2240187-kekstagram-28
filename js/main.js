@@ -7,3 +7,5 @@ const thumbnailsData = photoDescriptionArray();
 renderThumbnail(thumbnailsData);
 
 export { thumbnailsData };
+
+
