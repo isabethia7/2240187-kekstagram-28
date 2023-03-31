@@ -66,7 +66,6 @@ const onDocumentKeydown = (evt) => {
 
     document.removeEventListener('keydown', onDocumentKeydown);
     loadCommentsButton.removeEventListener('click', loadMoreComments);
-    //cancelBigPicture.removeEventListener('click', closeBigPicture);
     cancelBigPicture.removeEventListener('keydown', onDocumentKeydown);
   }
 };
