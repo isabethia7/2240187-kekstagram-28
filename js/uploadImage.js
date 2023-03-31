@@ -1,6 +1,6 @@
-import { createLoader } from './load.js';
-const uploadForm = document.querySelector('#upload-select-image');
-const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
+//import { createLoader } from './load.js';
+//const uploadForm = document.querySelector('#upload-select-image');
+//const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
 
 import { isEscapeKey } from './util.js';
 import { scaleImageReset, scaleDefault, scaleValueControl, scaleBigger, scaleSmaller, buttonBigger, buttonSmaller } from './scale.js';
@@ -70,8 +70,7 @@ function openImageRedactor() {
   document.addEventListener('keydown', onDocKeydown);
 
   //const loadAnimals = createLoader(console.log, console.error);
-
-  uploadSubmitButton.addEventListener('click', loadAnimals);
+  //uploadSubmitButton.addEventListener('click', loadAnimals);
 }
 
 imageUpload.addEventListener('change', openImageRedactor);

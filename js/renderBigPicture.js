@@ -1,7 +1,6 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 import { thumbnailContainer } from './renderThumbnail.js';
 import { renderComments, clearComment } from './renderComment.js';
-import { thumbnailsData } from './main.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture
@@ -83,39 +82,42 @@ const closeBigPicture = () => {
 };
 
 
-const openBigPicture = (evt) => {
-  if (evt.target.closest('.picture')) {
-    const target = evt.target.closest('.picture');
-    const currentThumbnailData = thumbnailsData.find(
-      (item) => item.id === Number(target.dataset.id)
-    );
-    bigPicture.classList.remove('hidden');
-    document.body.classList.add('modal-open');
-    bigPictureComments.classList.remove('hidden');
-    loadCommentsButton.classList.remove('hidden');
-    bigPictureImg.src = currentThumbnailData.url;
-    photoDescription.innerHTML = currentThumbnailData.description;
-    bigPictureLikes.innerHTML = currentThumbnailData.likes;
-    bigPictureCommentsAll.innerHTML = currentThumbnailData.comments.length;
+const renderBigPicture = (thumbnailsData) => {
+  const openBigPicture = (evt) => {
+    if (evt.target.closest('.picture')) {
+      const target = evt.target.closest('.picture');
+      const currentThumbnailData = thumbnailsData.find(
+        (item) => item.id === Number(target.dataset.id)
+      );
+      bigPicture.classList.remove('hidden');
+      document.body.classList.add('modal-open');
+      bigPictureComments.classList.remove('hidden');
+      loadCommentsButton.classList.remove('hidden');
+      bigPictureImg.src = currentThumbnailData.url;
+      photoDescription.innerHTML = currentThumbnailData.description;
+      bigPictureLikes.innerHTML = currentThumbnailData.likes;
+      bigPictureCommentsAll.innerHTML = currentThumbnailData.comments.length;
 
-    renderComments(currentThumbnailData.comments);
+      renderComments(currentThumbnailData.comments);
 
-    commentsLoad(bigPictureCommentsArray());
-    commentCounterUpdate();
+      commentsLoad(bigPictureCommentsArray());
+      commentCounterUpdate();
 
-    loadCommentsButton.addEventListener('click', loadMoreComments);
-    cancelBigPicture.addEventListener('click', closeBigPicture);
-    cancelBigPicture.addEventListener('keydown', onDocumentKeydown);
-    document.addEventListener('keydown', onDocumentKeydown);
-  }
+      loadCommentsButton.addEventListener('click', loadMoreComments);
+      cancelBigPicture.addEventListener('click', closeBigPicture);
+      cancelBigPicture.addEventListener('keydown', onDocumentKeydown);
+      document.addEventListener('keydown', onDocumentKeydown);
+    }
+  };
+
+  thumbnailContainer.addEventListener('click', openBigPicture);
+
+  thumbnailContainer.addEventListener('keydown', (evt) => {
+    if (isEnterKey(evt)) {
+      openBigPicture();
+    }
+  });
 };
 
-thumbnailContainer.addEventListener('click', openBigPicture);
-
-thumbnailContainer.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    openBigPicture();
-  }
-});
-
+export { renderBigPicture, closeBigPicture };
 //user modal

@@ -1,18 +1,22 @@
-
-import './renderBigPicture.js';
-import { photoDescriptionArray } from './data.js';
 import { renderThumbnail } from './renderThumbnail.js';
+import { setUserFormSubmit } from './validation.js';
+import { closeBigPicture, renderBigPicture } from './renderBigPicture.js';
 import './uploadImage.js';
+import { getData } from './api.js';
+import { showAlert } from './util.js';
 
-const thumbnailsData = photoDescriptionArray();
-renderThumbnail(thumbnailsData);
+const PostsCount = 4;
 
-export { thumbnailsData };
-
-
-fetch('https://28.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
+getData()
   .then((postData) => {
-    console.log(postData);
-  });
+    renderThumbnail(postData.slice(0, PostsCount));
+    renderBigPicture(postData);
+  })
+  .catch(
+    (err) => {
+      showAlert(err.message);
+    }
+  );
+
+setUserFormSubmit(closeBigPicture);
 

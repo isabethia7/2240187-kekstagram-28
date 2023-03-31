@@ -1,8 +1,14 @@
 export const imageUploadForm = document.querySelector('.img-upload__form');
 export const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
 export const commentInput = imageUploadForm.querySelector('.text__description');
+import { showAlert } from './util.js';
+import { sendData } from './api.js';
 const maxHashtagCount = 5;
 const maxCommentCharacters = 140;
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...'
+};
 
 export const pristine = new Pristine(imageUploadForm, {
   classTo: 'img-upload__text',
@@ -75,8 +81,21 @@ pristine.addValidator(
   'Комментарий должен содержать не более 140 символов'
 );
 
-imageUploadForm.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
+
+const setUserFormSubmit = (onSuccess) => {
+  imageUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .catch((err) => {
+          showAlert(err.message);
+        });
+    }
+  });
+};
+
+export { setUserFormSubmit };
+
