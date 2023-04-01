@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { scaleImageReset, scaleDefault, scaleValueControl, scaleBigger, scaleSmaller, buttonBigger, buttonSmaller } from './scale.js';
 import { imageUploadForm, hashtagInput, commentInput, pristine } from './validation.js';
-import { effectChange, effectReset } from './filter.js';
+import { effectChange, effectReset } from './renderImageEffect.js';
 
 export const uploadPhotoSection = document.querySelector('.img-upload__overlay');
 const imageUpload = document.querySelector('#upload-file');

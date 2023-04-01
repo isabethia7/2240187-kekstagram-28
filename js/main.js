@@ -1,6 +1,6 @@
 import { renderThumbnail } from './renderThumbnail.js';
 import { renderBigPicture } from './renderBigPicture.js';
-import './uploadImage.js';
+import './renderUploadImage.js';
 import { getData } from './api.js';
 import { showAlert } from './util.js';
 

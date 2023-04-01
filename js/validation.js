@@ -4,7 +4,7 @@ export const commentInput = imageUploadForm.querySelector('.text__description');
 const uploadForm = document.querySelector('#upload-select-image');
 const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
 import { sendData } from './api.js';
-import { renderSuccessMessage, renderErrorMessage } from './downoladMessage.js';
+import { renderSuccessMessage, renderErrorMessage } from './renderUploadMessage.js';
 const maxHashtagCount = 5;
 const maxCommentCharacters = 140;
 const submitButtonText = {
