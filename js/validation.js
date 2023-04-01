@@ -103,7 +103,6 @@ const setUserFormSubmit = () => {
       blockSubmitButton();
       sendData(new FormData(evt.target))
         .then((onSuccess) => {
-          console.log('ХУЙ ОТКРЫТ', onSuccess);
           renderSuccessMessage();
         })
         .catch((err) => {

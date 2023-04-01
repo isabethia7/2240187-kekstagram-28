@@ -8,18 +8,18 @@ const createLoader = (onSuccess, onError) => () => fetch(
 )
   .then((response) => {
     if (response.ok) {
-      console.log('RESPONSE');
+      //console.log('RESPONSE');
       return response.json();
     }
 
     throw new Error(`${response.status} ${response.statusText}`);
   })
   .then((data) => {
-    console.log('data');
+    //console.log('data');
     onSuccess(data);
   })
   .catch((err) => {
-    console.log('err');
+    //console.log('err');
     onError(err);
   });
 
