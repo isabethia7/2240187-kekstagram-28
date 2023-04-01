@@ -7,7 +7,7 @@
 
 const uploadMessageContainer = document.querySelector('body');
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const successButton = document.querySelector('.success').querySelector('.success__button');
+//const successButton = document.querySelector('.success').content.querySelector('.success__button');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessage = document.createDocumentFragment();
 const errorMessage = document.createDocumentFragment();
@@ -15,34 +15,25 @@ const errorMessage = document.createDocumentFragment();
 //const errorButton = document.querySelector('section').content.querySelector('.error__button');
 
 const closeSuccessWindow = () => {
-  successTemplate.classList.add('hidden');
+  document.querySelector('.success').remove();
+};
+
+const closeErrorWindow = () => {
+  document.querySelector('.error').remove();
 };
 
 const renderSuccessMessage = () => {
   const newSuccessTemplate = successTemplate.cloneNode(true);
-  successMessage.appendChild(newSuccessTemplate);
-  uploadMessageContainer.append(successMessage);
+  const successButton = newSuccessTemplate.querySelector('.success__button');
   successButton.addEventListener('click', closeSuccessWindow);
+  uploadMessageContainer.append(newSuccessTemplate);
 };
-
-successButton.addEventListener('click', closeSuccessWindow);
 
 const renderErrorMessage = () => {
   const newErrorTemplate = errorTemplate.cloneNode(true);
-  errorMessage.appendChild(newErrorTemplate);
-  uploadMessageContainer.append(errorMessage);
+  const errorButton = newErrorTemplate.querySelector('.error__button');
+  errorButton.addEventListener('click', closeErrorWindow);
+  uploadMessageContainer.append(newErrorTemplate);
 };
 
 export { renderSuccessMessage, renderErrorMessage };
-
-
-/*
-thumbnailContainer.addEventListener('click', openBigPicture);
-
-thumbnailContainer.addEventListener('keydown', (evt) => {
-  if (isEnterKey(evt)) {
-    openBigPicture();
-  }
-});
-*/
-

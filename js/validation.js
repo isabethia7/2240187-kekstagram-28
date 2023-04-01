@@ -106,7 +106,7 @@ const setUserFormSubmit = () => {
           renderSuccessMessage();
         })
         .catch((err) => {
-          showAlert(err.message);
+          //showAlert(err.message);
           renderErrorMessage();
         })
         .finally(unblockSubmitButton);
