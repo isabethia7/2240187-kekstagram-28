@@ -49,23 +49,20 @@ export function closeImageRedactor() {
   scaleBigger.removeEventListener('click', buttonBigger);
   cancelButton.removeEventListener('click', closeImageRedactor);
   imageUploadForm.removeEventListener('change', effectChange);
-  imageUploadForm.removeEventListener('keydown', onDocKeydown); // было imageUpload.removeEventListener('keydown', onDocKeydown);
+  imageUploadForm.removeEventListener('keydown', onDocKeydown);
 }
-
 
 function openImageRedactor() {
   uploadPhotoSection.classList.remove('hidden');
   document.body.classList.add('modal-open');
   scaleValueControl.value = `${scaleDefault}%`;
   addInputListener();
-  //setUserFormSubmit();
 
   scaleSmaller.addEventListener('click', buttonSmaller);
   scaleBigger.addEventListener('click', buttonBigger);
   cancelButton.addEventListener('click', closeImageRedactor);
   imageUploadForm.addEventListener('change', effectChange);
-  imageUploadForm.addEventListener('keydown', onDocKeydown); // было imageUpload.addEventListener('keydown', onDocKeydown);
+  imageUploadForm.addEventListener('keydown', onDocKeydown);
 }
 
 imageUpload.addEventListener('change', openImageRedactor);
-

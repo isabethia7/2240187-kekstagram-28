@@ -50,7 +50,6 @@ const renderSuccessMessage = () => {
   document.addEventListener('click', outOfTheBox);
 };
 
-
 const renderErrorMessage = () => {
   const errorWindow = errorTemplate.cloneNode(true);
   const errorButton = errorWindow.querySelector('.error__button');
