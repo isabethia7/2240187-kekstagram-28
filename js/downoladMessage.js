@@ -41,10 +41,10 @@ function outOfTheBox(evt) {
 }
 
 const renderSuccessMessage = () => {
-  const newSuccessTemplate = successTemplate.cloneNode(true);
-  const successButton = newSuccessTemplate.querySelector('.success__button');
+  const successWindow = successTemplate.cloneNode(true);
+  const successButton = successWindow.querySelector('.success__button');
   successButton.addEventListener('click', closeSuccessWindow);
-  uploadMessageContainer.append(newSuccessTemplate);
+  uploadMessageContainer.append(successWindow);
   uploadMessageContainer.addEventListener('keydown', onDocKeydown);
   uploadPhotoSection.classList.add('modal-open');
   document.addEventListener('click', outOfTheBox);
@@ -52,10 +52,10 @@ const renderSuccessMessage = () => {
 
 
 const renderErrorMessage = () => {
-  const newErrorTemplate = errorTemplate.cloneNode(true);
-  const errorButton = newErrorTemplate.querySelector('.error__button');
+  const errorWindow = errorTemplate.cloneNode(true);
+  const errorButton = errorWindow.querySelector('.error__button');
   errorButton.addEventListener('click', closeErrorWindow);
-  uploadMessageContainer.append(newErrorTemplate);
+  uploadMessageContainer.append(errorWindow);
   uploadMessageContainer.addEventListener('keydown', onDocKeydown);
   uploadPhotoSection.classList.add('modal-open');
   document.addEventListener('click', outOfTheBox);
