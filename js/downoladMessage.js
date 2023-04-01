@@ -7,12 +7,7 @@
 
 const uploadMessageContainer = document.querySelector('body');
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
-//const successButton = document.querySelector('.success').content.querySelector('.success__button');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
-const successMessage = document.createDocumentFragment();
-const errorMessage = document.createDocumentFragment();
-
-//const errorButton = document.querySelector('section').content.querySelector('.error__button');
 
 const closeSuccessWindow = () => {
   document.querySelector('.success').remove();
