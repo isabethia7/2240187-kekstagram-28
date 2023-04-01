@@ -1,10 +1,6 @@
-//import { createLoader } from './load.js';
-//const uploadForm = document.querySelector('#upload-select-image');
-//const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
-
 import { isEscapeKey } from './util.js';
 import { scaleImageReset, scaleDefault, scaleValueControl, scaleBigger, scaleSmaller, buttonBigger, buttonSmaller } from './scale.js';
-import { imageUploadForm, hashtagInput, commentInput, pristine } from './validation.js';
+import { imageUploadForm, hashtagInput, commentInput, pristine, setUserFormSubmit } from './validation.js';
 import { effectChange, effectReset } from './filter.js';
 
 const uploadPhotoSection = document.querySelector('.img-upload__overlay');
@@ -40,7 +36,7 @@ const removeInputListener = () => {
   commentInput.removeEventListener('blur', inputOutFocus);
 };
 
-function closeImageRedactor() {
+export function closeImageRedactor() {
   uploadPhotoSection.classList.add('hidden');
   document.body.classList.remove('modal-open');
   imageUploadForm.reset();
@@ -62,15 +58,13 @@ function openImageRedactor() {
   document.body.classList.add('modal-open');
   scaleValueControl.value = `${scaleDefault}%`;
   addInputListener();
+  setUserFormSubmit();
 
   scaleSmaller.addEventListener('click', buttonSmaller);
   scaleBigger.addEventListener('click', buttonBigger);
   cancelButton.addEventListener('click', closeImageRedactor);
   imageUploadForm.addEventListener('change', effectChange);
   document.addEventListener('keydown', onDocKeydown);
-
-  //const loadAnimals = createLoader(console.log, console.error);
-  //uploadSubmitButton.addEventListener('click', loadAnimals);
 }
 
 imageUpload.addEventListener('change', openImageRedactor);

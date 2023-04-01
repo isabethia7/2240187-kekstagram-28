@@ -1,11 +1,14 @@
 export const imageUploadForm = document.querySelector('.img-upload__form');
 export const hashtagInput = imageUploadForm.querySelector('.text__hashtags');
 export const commentInput = imageUploadForm.querySelector('.text__description');
+const uploadForm = document.querySelector('#upload-select-image');
+const uploadSubmitButton = uploadForm.querySelector('#upload-submit');
 import { showAlert } from './util.js';
 import { sendData } from './api.js';
+import { renderSuccessMessage, renderErrorMessage } from './downoladMessage.js';
 const maxHashtagCount = 5;
 const maxCommentCharacters = 140;
-const SubmitButtonText = {
+const submitButtonText = {
   IDLE: 'Сохранить',
   SENDING: 'Сохраняю...'
 };
@@ -81,18 +84,33 @@ pristine.addValidator(
   'Комментарий должен содержать не более 140 символов'
 );
 
+const blockSubmitButton = () => {
+  uploadSubmitButton.disabled = true;
+  uploadSubmitButton.textContent = submitButtonText.SENDING;
+};
 
-const setUserFormSubmit = (onSuccess) => {
+const unblockSubmitButton = () => {
+  uploadSubmitButton.disabled = false;
+  uploadSubmitButton.textContent = submitButtonText.IDLE;
+};
+
+const setUserFormSubmit = () => {
   imageUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const isValid = pristine.validate();
     if (isValid) {
+      blockSubmitButton();
       sendData(new FormData(evt.target))
-        .then(onSuccess)
+        .then((onSuccess) => {
+          console.log('ХУЙ ОТКРЫТ', onSuccess);
+          renderSuccessMessage();
+        })
         .catch((err) => {
           showAlert(err.message);
-        });
+          renderErrorMessage();
+        })
+        .finally(unblockSubmitButton);
     }
   });
 };
