@@ -15,10 +15,10 @@ const loadCommentsButton = bigPicture.querySelector('.comments-loader');
 let commentShowCounter = 0;
 const commentShowStep = 5;
 
-const bigPictureCommentsArray = () =>
+const getBigPictureComments = () =>
   Array.from(bigPicture.querySelectorAll('.social__comment'));
 
-const commentsLoadCounter = (allComments) => {
+const loadCommentsCounter = (allComments) => {
   if (allComments - commentShowCounter < commentShowStep) {
     commentShowCounter =
       commentShowCounter + (allComments - commentShowCounter);
@@ -27,7 +27,7 @@ const commentsLoadCounter = (allComments) => {
   }
 };
 
-const commentCounterUpdate = () => {
+const updateCommentCounter = () => {
   bigPictureComments.firstChild.data = `${commentShowCounter} из `;
 };
 
@@ -41,8 +41,8 @@ const commentsShow = (allComments) => {
   }
 };
 
-const commentsLoad = (commentsArray) => {
-  commentsLoadCounter(commentsArray.length);
+const loadComments = (commentsArray) => {
+  loadCommentsCounter(commentsArray.length);
   if (commentShowCounter < commentsArray.length) {
     commentsShow(commentsArray);
   } else {
@@ -52,8 +52,8 @@ const commentsLoad = (commentsArray) => {
 };
 
 const loadMoreComments = () => {
-  commentsLoad(bigPictureCommentsArray());
-  commentCounterUpdate();
+  loadComments(getBigPictureComments());
+  updateCommentCounter();
 };
 
 const onDocumentKeydown = (evt) => {
@@ -100,8 +100,8 @@ const renderBigPicture = (thumbnailsData) => {
 
       renderComments(currentThumbnailData.comments);
 
-      commentsLoad(bigPictureCommentsArray());
-      commentCounterUpdate();
+      loadComments(getBigPictureComments());
+      updateCommentCounter();
 
       loadCommentsButton.addEventListener('click', loadMoreComments);
       cancelBigPicture.addEventListener('click', closeBigPicture);
@@ -120,4 +120,4 @@ const renderBigPicture = (thumbnailsData) => {
 };
 
 export { renderBigPicture, closeBigPicture };
-//user modal
+
