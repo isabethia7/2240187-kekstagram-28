@@ -1255,6 +1255,7 @@ main {
   font-size: '30px';
   text-align: 'center';
   background-color: 'red';
+  display: block;
 };
 
 /**
