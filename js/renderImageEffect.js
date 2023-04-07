@@ -61,7 +61,7 @@ function effectChange(evt) {
     imageEffectCurrent = imageEffect.find((effect) => effect.name === effectName);
     effectSliderUpdate();
   }
-  effectSliderUpdate();
+  imageEffectOriginalCheck();
   sliderElement.noUiSlider.on('update', () => {
     valueElement.value = sliderElement.noUiSlider.get();
     imagePreview.style.filter = `${imageEffectCurrent.filter}(${valueElement.value}${imageEffectCurrent.unit})`;
