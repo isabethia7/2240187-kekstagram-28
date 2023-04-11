@@ -1,7 +1,7 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 import { renderComments, clearComment } from './renderComment.js';
 
-const commentShowStep = 5;
+const COMMENT_SHOW_STEP = 5;
 
 const thumbnailContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -21,11 +21,11 @@ const getBigPictureComments = () =>
   Array.from(bigPicture.querySelectorAll('.social__comment'));
 
 const loadCommentsCounter = (allComments) => {
-  if (allComments - commentShowCounter < commentShowStep) {
+  if (allComments - commentShowCounter < COMMENT_SHOW_STEP) {
     commentShowCounter =
       commentShowCounter + (allComments - commentShowCounter);
   } else {
-    commentShowCounter = commentShowCounter + commentShowStep;
+    commentShowCounter = commentShowCounter + COMMENT_SHOW_STEP;
   }
 };
 
