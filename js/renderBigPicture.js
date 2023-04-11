@@ -1,6 +1,8 @@
 import { isEscapeKey, isEnterKey } from './util.js';
 import { renderComments, clearComment } from './renderComment.js';
 
+const commentShowStep = 5;
+
 const thumbnailContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture
@@ -12,8 +14,8 @@ const bigPictureComments = bigPicture.querySelector('.social__comment-count');
 const cancelBigPicture = bigPicture.querySelector('.big-picture__cancel');
 const photoDescription = bigPicture.querySelector('.social__caption');
 const loadCommentsButton = bigPicture.querySelector('.comments-loader');
+
 let commentShowCounter = 0;
-const commentShowStep = 5;
 
 const getBigPictureComments = () =>
   Array.from(bigPicture.querySelectorAll('.social__comment'));
